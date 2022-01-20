@@ -1,0 +1,6 @@
+db.sqlite3
+/__pycache__/
+MySite/__pycache__/
+__pycache__
+/env/
+/.idea/
