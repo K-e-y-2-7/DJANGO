@@ -17,10 +17,9 @@ from http.client import HTTPResponse
 from urllib import response
 from django.contrib import admin
 from django.urls import path
-from django.http import HttpResponse
 
-def homepage(request) -> HttpResponse:   
-    return HttpResponse('HOME')
+
+
 
 
 
