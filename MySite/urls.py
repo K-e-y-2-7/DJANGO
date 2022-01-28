@@ -16,18 +16,15 @@ Including another URLconf
 from http.client import HTTPResponse
 from urllib import response
 from django.contrib import admin
-from django.urls import path, include, re_path
-from myapp.views import homepage, regex, users, user, articles, archive_articles
+from django.urls import path
+from django.http import HttpResponse
+
+def homepage(request) -> HttpResponse:   
+    return HttpResponse('HOME')
 
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage),
-    path('article/', include('myapp.urls')),
-    path('articles/', articles),
-    path('articles/archive',archive_articles),
-    path('users/', users),
-    path('users/<int:user_number>', user),
-    re_path(r'^(?P<text>[\d,a-f]{4}-[\d,a-f]{6}$)', regex),
+    path('', homepage)
 ]
