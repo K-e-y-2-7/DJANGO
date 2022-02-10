@@ -2,29 +2,32 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 
 def homepage(request: HttpRequest) -> HttpResponse:   
-    return HttpResponse('HOME')
+    return render(request, 'homepage.html')
 
 
-def users(request: HttpRequest) -> HttpResponse:   
-    return HttpResponse('All people')
+def library(request: HttpRequest) -> HttpResponse:
+    return render(request, 'library.html')
+
+
+def users(request: HttpRequest) -> HttpResponse:
+    return render(request, 'users.html')
 
 
 def user(request:HttpRequest, user_number:int ) -> HttpResponse:   
-    return HttpResponse(f'User #{user_number}')
+    return render(request, 'user.html', {'number' : user_number})
 
 
 def articles(request:HttpRequest) -> HttpResponse:    
-    return HttpResponse('All articles')
+    return render(request, 'articles.html')
 
 
 def main_article(request:HttpRequest) -> HttpResponse:   
     return HttpResponse('Main article')
 
 
-def article(request, article_number:int, name=''):
-    return HttpResponse(
-        "This is an article #{}. {}".format(article_number, "Name of this article is {}".format(
-            name) if name else "This is unnamed article")) 
+def article(request:HttpRequest, article_number:int, name:str ='unnamed'):
+    response = f'Article #{article_number}. Article name {name}.'
+    return HttpResponse(response)
 
 
 def archive_articles(request:HttpRequest, ) -> HttpResponse:   
