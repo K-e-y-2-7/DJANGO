@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 
+
 def homepage(request: HttpRequest) -> HttpResponse:   
     return render(request, 'homepage.html')
 
@@ -21,21 +22,16 @@ def articles(request:HttpRequest) -> HttpResponse:
     return render(request, 'articles.html')
 
 
-def main_article(request:HttpRequest) -> HttpResponse:   
-    return HttpResponse('Main article')
-
-
-def article(request:HttpRequest, article_number:int, name:str ='unnamed'):
-    response = f'Article #{article_number}. Article name {name}.'
-    return HttpResponse(response)
+def article(request:HttpRequest, article_number:int, name:str ='unnamed') -> HttpResponse:
+    return render(request, 'article.html', {'number' : article_number, 'name' : name})
 
 
 def archive_articles(request:HttpRequest, ) -> HttpResponse:   
-    return HttpResponse('All articles in archive')
+    return render (request, 'archive_articles.html')
 
 
-def archive_article(request:HttpRequest, article_number:int, name='' ) -> HttpResponse:   
-    return HttpResponse('Article in archive')
+def archive_article(request:HttpRequest, article_number:int, ) -> HttpResponse:   
+    return render (request, 'archive_article.html', {'number' : article_number})
 
 
 def regex(request, text):
