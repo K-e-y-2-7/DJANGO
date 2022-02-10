@@ -13,7 +13,7 @@ def user(request:HttpRequest, user_number:int ) -> HttpResponse:
     return HttpResponse(f'User #{user_number}')
 
 
-def articles(request:HttpRequest) -> HttpResponse:   
+def articles(request:HttpRequest) -> HttpResponse:    
     return HttpResponse('All articles')
 
 
