@@ -3,7 +3,43 @@
 {% block content %}
 <div style="padding: 10px; background-color: rgb(105, 36, 59)">
     <center>
-        <h1> This is a LIBRARY</h1> 
+        <p style="font-size:70px"> This is a LIBRARY</p> 
     </center>
-</div>    
+    
+</div>
+<br>
+<center>
+{% for book in books %}
+    <div class="card" style="width: 50rem; background-color: rgb(134, 62, 84);">       
+        <div class="container">
+            <div class="row">
+                <div class="col" style="width: 22rem; height: 28rem; ">
+                    {% if book.img %}         
+                        <img src="{{ book.img.url }}" class="card-img-top" alt="Война и мир" height="448">
+                    {% else %}       
+                        <img src="..." class="card-img-top" alt="...">              
+                    {% endif %}
+                </div>
+                <div class="col" style="font-size:25px" >
+                    <p class="card-title" style="font-size:50px"><strong>{{book.name}}</strong></p>
+                    <p class="card-text">               
+                        <strong>Author:</strong> {%for author in book.author.all%}
+                            {{author}},
+                        {% endfor%}
+                    </p>                              
+                    <strong>Date of publicate: </strong>{{book.year_of_published}}
+                    <p>
+                        {% if book.are_available %}
+                            Is availible ✅
+                        {% else %}
+                            Not availible ❌
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <br>   
+{% endfor%}
+</center>   
 {% endblock %}

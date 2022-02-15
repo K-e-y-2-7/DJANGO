@@ -3,7 +3,43 @@
 {% block content %}
 <div style="padding: 10px; background-color: rgb(105, 36, 59)">
     <center>
-        <h1> Here is all ARTICLES</h1> 
+        <p style="font-size:70px"> Here is all ARTICLES</p> 
     </center>
-</div>    
+</div>   
+<br> 
+<div class="container">
+    <center>
+    {%for article in articles%}
+    <a style="text-decoration: none; color:aliceblue;" href="{{article.id}}/">
+        <div class="d-xl-inline-flex p-2 bd-highlight" >     
+        <div class="card" style="width: 55rem; background-color: rgb(22, 107, 100);">
+        <div class="card-body">
+          <h5 class="card-title">{{article.headline}}</h5>        
+            <div class="row" style="color:aliceblue;">
+                <div class="col-8 text-start fs-5">
+                    Genre: {{article.genre}}
+                </div>
+                <div class="col-4">
+                    {%for like in likes%}
+                        {% if like.article.id == article.id %}
+                            👍 
+                        {% endif %}   
+                    {% endfor %}
+                    {%for dislike in dislikes%}
+                        {% if dislike.article.id == article.id %}
+                            👎 
+                        {% endif %}   
+                    {% endfor %} 
+                    Author of article: {{article.author}} <br>
+                    Created at: {{article.created_at}}
+                </div>
+            </div>
+        </div>
+        </div>     
+        </div>
+    </a>
+    <br>
+    {%endfor%}
+    </center>
+</div>
 {% endblock %}

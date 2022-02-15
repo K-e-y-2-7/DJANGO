@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+
+{% block content %} 
+<div style="padding: 10px; background-color: rgb(105, 36, 59)">
+    <center>
+        <p style="font-size:70px"> This is a TWO COMMENTS OF ARTICLE</p> 
+        <p> #Получить первые 2 коментария по дате создания к статье у которой имя автора последнее по алфавиту.# </p>
+    </center>
+    
+</div>
+
+<br>
+<div class="container">
+    {% for article in articles %}
+        <center>   
+            <div class="d-xl-inline-flex p-2 bd-highlight" >     
+            <div class="card" style="width: 55rem; background-color: rgb(22, 107, 100); color:aliceblue" >
+            <div class="card-body">
+              <h5 class="card-title">{{article.headline}}</h5>
+              <p class="card-text">{{article.text}}</p>         
+                <div class="row">
+                    <div class="col-5 text-start fs-5">
+                        Genre: {{article.genre}}                                   
+                    </div>
+                    <div class="col-2">
+                        <h2>{%for like in likes%}
+                            {% if like.article.id == article.id %}
+                                👍
+                            {% endif %}   
+                        {% endfor %}
+                        {%for dislike in dislikes%}
+                            {% if dislike.article.id == article.id %}
+                                👎 
+                            {% endif %}   
+                        {% endfor %}</h2>                                   
+                    </div>
+                    <div class="col-1">
+                        <button type="button" class="btn btn-lg">
+                            <a style = "text-decoration: none;" href="comments" class="card-link"><h2>💬</h2></a>
+                        </button>                 
+                    </div>
+                    <div class="col-4 text-end">                   
+                        Author of article: {{article.author}} <br>
+                        Created at: {{article.created_at}}
+                    </div>
+                </div>
+            </div>
+            </div>     
+            </div>
+        <br>
+        </center>
+    {% endfor %}
+</div> 
+<br> 
+<div class="container">
+    <center>
+        {%for comment in comments%}
+        <div class="d-xl-inline-flex p-2 bd-highlight">
+            <div class="card" style="width: 55rem; background-color: rgb(22, 107, 100); color: whitesmoke">
+                <div class="card-body">
+                    <h5 class="card-subtitle mb-2" style="color: whitesmoke"></h5>                
+                    <div class="row">
+                        <div class="fs-3 text-start">{{comment.text}}</div>
+                        <div class="fs-5 text-end">
+                            {%for like in likes%}
+                                {% if like.comment.id == comment.id %}
+                                    👍
+                                {% endif %}   
+                            {% endfor %}
+                            {%for dislike in dislikes%}
+                                {% if dislike.comment.id == comment.id %}
+                                    👎 
+                                {% endif %}   
+                            {% endfor %}
+                            Author: {{comment.user}}; Created at: {{comment.created_at}};</div>
+                        <br>
+                    </div><div class="col-2"></div>
+                    </div>
+                </div>
+            </div>     
+        </div>
+        <br>
+        {%endfor%}
+    </center> 
+</div>         
+                      
+{% endblock %}

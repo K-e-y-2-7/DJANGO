@@ -1,0 +1,52 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="padding: 10px; background-color: rgb(105, 36, 59)">
+    <center>
+        <p style="font-size:70px"> This is a LAST FIVE COMMENTS</p> 
+    </center>
+    
+</div>
+<br>
+
+    <div class="container">
+        <center>
+        {%for comment in comments%}
+            <div class="d-xl-inline-flex p-2 bd-highlight" >     
+            <div class="card" style="width: 55rem; background-color: rgb(22, 107, 100); color: whitesmoke">
+            <div class="card-body">
+              <h5 class="card-subtitle mb-2" style="color: whitesmoke"></h5>
+              <div class="row">
+                <div class="col-8">
+                    <p class="card-text"> {{comment.text}}</p> 
+                </div>
+                <div class="col-4">
+                </div>
+            </div>
+                      
+                <div class="row">
+                    <div class="col-7">
+                    </div>
+                    <div class="col-5">
+                        Author of comment: {{comment.user}} <br>
+                        Created at: {{comment.created_at}}
+                        <h5>{%for like in likes%}
+                            {% if like.comment.id == comment.id %}
+                                👍
+                            {% endif %}   
+                        {% endfor %}
+                        {%for dislike in dislikes%}
+                            {% if dislike.comment.id == comment.id %}
+                                👎 
+                            {% endif %}   
+                        {% endfor %}</h5>
+                    </div>
+                </div>
+            </div>
+            </div>     
+            </div>
+        <br>
+        {%endfor%}
+        </center> 
+    </div>  
+{% endblock %}
