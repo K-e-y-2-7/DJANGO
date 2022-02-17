@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="padding: 10px; background-color: rgb(105, 36, 59)">
+    <center>
+        <p style="font-size:70px"> Here is an ARTICLE №{{ number }}. Article name {{ name }}</p> 
+    </center>
+</div> 
+<br>
+<div class="container">
+    <center>   
+        <div class="d-xl-inline-flex p-2 bd-highlight" >     
+        <div class="card" style="width: 55rem; background-color: rgb(22, 107, 100); color:aliceblue" >
+        <div class="card-body">
+          <h5 class="card-title">{{article.headline}}</h5>
+          <p class="card-text">{{article.text}}</p>         
+            <div class="row">
+                <div class="col-5 text-start fs-5">
+                    Genre: {{article.genre}}                                   
+                </div>
+                <div class="col-2">
+                    <h2>{%for like in likes%}
+                        {% if like.article.id == article.id %}
+                            👍
+                        {% endif %}   
+                    {% endfor %}
+                    {%for dislike in dislikes%}
+                        {% if dislike.article.id == article.id %}
+                            👎 
+                        {% endif %}   
+                    {% endfor %}</h2>                                   
+                </div>
+                <div class="col-1">
+                    <button type="button" class="btn btn-lg">
+                        <a style = "text-decoration: none;" href="comments" class="card-link"><h2>💬</h2></a>
+                    </button>                 
+                </div>
+                <div class="col-4 text-end">                   
+                    Author of article: {{article.author}} <br>
+                    Created at: {{article.created_at}}
+                </div>
+            </div>
+        </div>
+        </div>     
+        </div>
+    <br>
+    </center>
+</div>     
+{% endblock %}

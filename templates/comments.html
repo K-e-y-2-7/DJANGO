@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div style="padding: 10px; background-color: rgb(105, 36, 59)">
+    <center>
+        <p style="font-size:70px"> This is a COMMENTS</p> 
+    </center>
+    
+</div>
+<br>
+<center>
+    <div class="container">
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="button" class="btn" style="background-color: rgb(107, 99, 22)"><a style = "text-decoration: none; color: black;" href="{% url 'last_five_comments'%}"><h1> 5 last comments </h1></a></button>
+            <button type="button" class="btn" style="background-color: rgb(107, 99, 22)"><a style = "text-decoration: none; color: black;" href="{% url 'two_comments_of_article'%}"><h1> 2 comments of article </h1></a></button>
+            
+        </div>
+    </div>
+</center>   
+{% endblock %} 

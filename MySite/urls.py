@@ -13,21 +13,26 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from http.client import HTTPResponse
-from urllib import response
+
 from django.contrib import admin
 from django.urls import path, include, re_path
-from myapp.views import homepage, regex, users, user, articles, archive_articles
-
+from myapp import views
+from django.conf.urls.static import static
+from django.conf import settings
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', homepage),
-    path('article/', include('myapp.urls')),
-    path('articles/', articles),
-    path('articles/archive',archive_articles),
-    path('users/', users),
-    path('users/<int:user_number>', user),
-    re_path(r'^(?P<text>[\d,a-f]{4}-[\d,a-f]{6}$)', regex),
+    path('', views.homepage, name='homepage'),
+    path('articles/', include('myapp.urls')),
+    path('comments/', views.comments, name='comments'), 
+    path('last_five_comments/', views.five_comments, name='last_five_comments'),
+    path('two_comments_of_article', views.two_comments_of_article, name='two_comments_of_article' ), 
+    path('library/', views.library, name='library'), 
+    path('users/', views.users, name='users'), 
+    path('users/<int:user_number>', views.user, name='user'),
+    re_path(r'^(?P<text>[\d,a-f]{4}-[\d,a-f]{6}$)', views.regex),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
